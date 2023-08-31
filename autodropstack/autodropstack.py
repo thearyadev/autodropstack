@@ -17,6 +17,8 @@ class AutoDropStack(Generic[T]):
             self.__stack.pop(0)
         self.__stack.append(item)
 
+    """Return a dictionary of the percentiles of the items in the stack."""
+
     def percentiles(self) -> Dict[T, float]:
         return {
             item: self.__stack.count(item) / len(self.__stack) for item in self.__stack
