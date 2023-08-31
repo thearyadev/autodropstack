@@ -23,3 +23,30 @@ class AutoDropStack(Generic[T]):
         return {
             item: self.__stack.count(item) / len(self.__stack) for item in self.__stack
         }
+
+    def __str__(self):
+        return f"AutoDropStack({self.max_size})"
+
+    def __repr__(self):
+        return f"AutoDropStack({self.max_size})"
+
+    def __len__(self):
+        return len(self.__stack)
+
+    def __iter__(self):
+        return iter(self.__stack)
+
+    def __getitem__(self, index):
+        return self.__stack[index]
+
+    def __setitem__(self, index, value):
+        self.__stack[index] = value
+
+    def __delitem__(self, index):
+        del self.__stack[index]
+
+    def __contains__(self, item):
+        return item in self.__stack
+
+    def __reversed__(self):
+        return reversed(self.__stack)
