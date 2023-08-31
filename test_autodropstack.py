@@ -74,3 +74,98 @@ def test_private_stack():
 def test_percentiles_empty_stack():
     s = AutoDropStack(5)
     assert s.percentiles() == {}
+
+
+def test___str__():
+    s = AutoDropStack(5)
+    assert str(s) == "AutoDropStack(5)"
+
+
+def test___repr__():
+    s = AutoDropStack(5)
+    assert repr(s) == "AutoDropStack(5)"
+
+
+def test___len__():
+    s = AutoDropStack(5)
+    assert len(s) == 0
+    s.push(1)
+    assert len(s) == 1
+
+
+def test___iter__():
+    s = AutoDropStack(5)
+    s.push(1)
+    s.push(2)
+    s.push(3)
+    s.push(4)
+    s.push(5)
+    assert [i for i in s] == [1, 2, 3, 4, 5]
+
+
+def test___getitem__():
+    s = AutoDropStack(5)
+    s.push(1)
+    s.push(2)
+    s.push(3)
+    s.push(4)
+    s.push(5)
+    assert s[0] == 1
+    assert s[1] == 2
+    assert s[2] == 3
+    assert s[3] == 4
+    assert s[4] == 5
+
+
+def test___setitem__():
+    s = AutoDropStack(5)
+    s.push(1)
+    s.push(2)
+    s.push(3)
+    s.push(4)
+    s.push(5)
+    s[0] = 10
+    assert s[0] == 10
+    assert s[1] == 2
+    assert s[2] == 3
+    assert s[3] == 4
+    assert s[4] == 5
+
+
+def test___delitem__():
+    s = AutoDropStack(5)
+    s.push(1)
+    s.push(2)
+    s.push(3)
+    s.push(4)
+    s.push(5)
+    del s[0]
+    assert s[0] == 2
+    assert s[1] == 3
+    assert s[2] == 4
+    assert s[3] == 5
+
+
+def test___contains__():
+    s = AutoDropStack(5)
+    s.push(1)
+    s.push(2)
+    s.push(3)
+    s.push(4)
+    s.push(5)
+    assert 1 in s
+    assert 2 in s
+    assert 3 in s
+    assert 4 in s
+    assert 5 in s
+    assert 6 not in s
+
+
+def test___reversed__():
+    s = AutoDropStack(5)
+    s.push(1)
+    s.push(2)
+    s.push(3)
+    s.push(4)
+    s.push(5)
+    assert [i for i in reversed(s)] == [5, 4, 3, 2, 1]
