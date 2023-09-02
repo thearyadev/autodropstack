@@ -1,3 +1,5 @@
+![Tests](https://github.com/thearyadev/autodropstack/actions/workflows/pytest.yaml/badge.svg)
+
 # AutoDropStack
 
 Simple first in last out stack data structure
